@@ -1,36 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import api from "../contexts/axiosConfig";
+import api from "../../contexts/axiosConfig";
 import {
   Shield,
   Wallet,
-  Plus,
-  MessageCircle,
   TrendingUp,
   CheckCircle,
   LogOut,
   DollarSign,
+  MessageCircle,
 } from "lucide-react";
-import { useAuth } from "../contexts/AuthContext";
-import CreateTransaction from "./CreateTransaction";
-import WithdrawModal from "./WithdrawModal";
 
-interface Transaction {
+import WithdrawModal from "../transactions/WithdrawModal";
+import { useAuth } from "../../hooks/useAuth";
+import { Transaction } from "../../types/buyer";
+
+/* interface Transaction {
   id: number;
   title: string;
   category: string;
   amount: number;
   status: string;
-  seller_name?: string;
+  buyer_name?: string;
   created_at: string;
-}
+} */
 
-const BuyerDashboard: React.FC = () => {
+const SellerDashboard: React.FC = () => {
   const { user, logout, refreshUser } = useAuth();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [showCreateTransaction, setShowCreateTransaction] = useState(false);
-  const [showWithdrawModal, setShowWithdrawModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showWithdrawModal, setShowWithdrawModal] = useState(false);
 
   useEffect(() => {
     fetchTransactions();
@@ -39,13 +38,22 @@ const BuyerDashboard: React.FC = () => {
 
   const fetchTransactions = async () => {
     try {
-      const res = await api.get(`/users/transactions`);
+      const res = await api.get(`/transactions/incoming`);
       setTransactions(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
-      console.error("Error fetching buyer transactions:", err);
+      console.error("Error fetching seller transactions:", err);
       setTransactions([]);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const acceptTransaction = async (id: number) => {
+    try {
+      await api.post(`/transactions/${id}/accept`);
+      fetchTransactions();
+    } catch (err) {
+      console.error("Error accepting transaction:", err);
     }
   };
 
@@ -99,10 +107,10 @@ const BuyerDashboard: React.FC = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Buyer Dashboard
+            Seller Dashboard
           </h1>
           <p className="text-gray-600">
-            Manage your purchases and escrow transactions
+            Manage incoming transactions and payouts
           </p>
         </div>
 
@@ -134,14 +142,14 @@ const BuyerDashboard: React.FC = () => {
             <div className="flex justify-between items-center">
               <div>
                 <p className="text-sm font-medium text-gray-600">
-                  Active Transactions
+                  Pending Offers
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {transactions.filter((t) => t.status === "accepted").length}
+                  {transactions.filter((t) => t.status === "pending").length}
                 </p>
               </div>
-              <div className="bg-green-100 p-3 rounded-lg">
-                <TrendingUp className="h-6 w-6 text-green-600" />
+              <div className="bg-yellow-100 p-3 rounded-lg">
+                <TrendingUp className="h-6 w-6 text-yellow-600" />
               </div>
             </div>
           </div>
@@ -149,33 +157,26 @@ const BuyerDashboard: React.FC = () => {
           <div className="bg-white rounded-xl shadow-sm p-6 border">
             <div className="flex justify-between items-center">
               <div>
-                <p className="text-sm font-medium text-gray-600">Completed</p>
+                <p className="text-sm font-medium text-gray-600">
+                  Completed Sales
+                </p>
                 <p className="text-2xl font-bold text-gray-900">
                   {transactions.filter((t) => t.status === "completed").length}
                 </p>
               </div>
-              <div className="bg-purple-100 p-3 rounded-lg">
-                <CheckCircle className="h-6 w-6 text-purple-600" />
+              <div className="bg-green-100 p-3 rounded-lg">
+                <CheckCircle className="h-6 w-6 text-green-600" />
               </div>
             </div>
           </div>
         </div>
-
-        {/* Actions */}
-        <button
-          onClick={() => setShowCreateTransaction(true)}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 flex items-center space-x-2 mb-8"
-        >
-          <Plus className="h-5 w-5" />
-          <span>Create New Transaction</span>
-        </button>
 
         {/* Transactions */}
         <div className="bg-white rounded-xl shadow-sm border">
           {transactions.length === 0 ? (
             <div className="p-8 text-center text-gray-500">
               <MessageCircle className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-              <p>No transactions yet. Create one to get started.</p>
+              <p>No transactions yet. Check back later.</p>
             </div>
           ) : (
             transactions.map((t) => (
@@ -202,33 +203,34 @@ const BuyerDashboard: React.FC = () => {
                       <DollarSign className="h-4 w-4" />
                       <span>${t.amount}</span>
                     </span>
-                    {t.seller_name && <span>Seller: {t.seller_name}</span>}
+                    {t.buyer_name && <span>Buyer: {t.buyer_name}</span>}
                     <span>{new Date(t.created_at).toLocaleDateString()}</span>
                   </div>
                 </div>
-                <Link
-                  to={`/transaction/${t.id}`}
-                  className="text-blue-600 hover:text-blue-800 font-medium text-sm"
-                >
-                  View Details
-                </Link>
+
+                <div className="flex items-center space-x-3">
+                  {t.status === "pending" && (
+                    <button
+                      onClick={() => acceptTransaction(t.id)}
+                      className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
+                    >
+                      Accept
+                    </button>
+                  )}
+                  <Link
+                    to={`/transaction/${t.id}`}
+                    className="text-blue-600 hover:text-blue-800 font-medium text-sm"
+                  >
+                    View Details
+                  </Link>
+                </div>
               </div>
             ))
           )}
         </div>
       </div>
 
-      {/* Modals */}
-      {showCreateTransaction && (
-        <CreateTransaction
-          onClose={() => setShowCreateTransaction(false)}
-          onSuccess={() => {
-            setShowCreateTransaction(false);
-            fetchTransactions();
-            refreshUser();
-          }}
-        />
-      )}
+      {/* Withdraw Modal */}
       {showWithdrawModal && (
         <WithdrawModal
           onClose={() => setShowWithdrawModal(false)}
@@ -242,4 +244,4 @@ const BuyerDashboard: React.FC = () => {
   );
 };
 
-export default BuyerDashboard;
+export default SellerDashboard;

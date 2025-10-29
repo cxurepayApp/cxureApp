@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import api from "../contexts/axiosConfig";
+import api from "../../contexts/axiosConfig";
 import { X, Wallet, Building } from "lucide-react";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
+
 
 interface WithdrawModalProps {
   onClose: () => void;

@@ -32,7 +32,7 @@ const LandingPage = () => {
         <div className="flex justify-between items-center mx-auto px-4 sm:px-6 lg:px-36 lg:h-24 ">
           <div className="flex items-center space-x-2">
             <img
-              src="/public/icons/CXLOGO.svg"
+              src="/icons/CXLOGO.svg"
               alt=""
               width={150}
               height={20}
@@ -87,7 +87,7 @@ const LandingPage = () => {
         </div>
         <div>
           <img
-            src="/public/images/secure_Wallet Glyph Style Blue Colour.svg"
+            src="/images/secure_Wallet Glyph Style Blue Colour.svg"
             alt=""
             width={800}
             height={800}

@@ -2,14 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { SocketProvider } from "./contexts/SocketContext";
-import LandingPage from "./components/landing/LandingPage";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import TransactionDetails from "./components/transactions/TransactionDetails";
-import AdminDashboard from "./components/dashboard/AdminDashboard";
-import BuyerDashboard from "./components/dashboard/BuyerDashboard";
-import SellerDashboard from "./components/dashboard/SellerDashboard";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
+import LandingPage from "./pages/landing/LandingPage";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import TransactionDetails from "./pages/transactions/TransactionDetails";
+import AdminDashboard from "./pages/dashboard/AdminDashboard";
+import BuyerDashboard from "./pages/dashboard/BuyerDashboard";
+import SellerDashboard from "./pages/dashboard/SellerDashboard";
+import ProtectedRoute from "./pages/auth/ProtectedRoute";
 
 function App() {
   return (

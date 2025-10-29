@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import api from "../contexts/axiosConfig";
+import api from "../../contexts/axiosConfig";
 import {
   Shield,
   Users,
@@ -12,35 +12,27 @@ import {
   CheckCircle,
   RefreshCw,
 } from "lucide-react";
+import { AdminUser, EscrowAccount } from "../../types/admin";
 
-interface User {
+
+/* interface User {
   id: number;
   name: string;
   email: string;
   role: string;
   wallet_balance: number;
   created_at: string;
-}
+} */
 
-interface EscrowAccount {
-  id: number;
-  transaction_id: number;
-  amount: number;
-  status: string;
-  transaction_title: string;
-  category: string;
-  buyer_name: string;
-  seller_name: string;
-  created_at: string;
-}
+
 
 const AdminDashboard = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<AdminUser[]>([]);
   const [escrowAccounts, setEscrowAccounts] = useState<EscrowAccount[]>([]);
   const [activeTab, setActiveTab] = useState<"users" | "escrow">("users");
   const [loading, setLoading] = useState(true);
   const [showAddFunds, setShowAddFunds] = useState(false);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [selectedUser, setSelectedUser] = useState<AdminUser | null>(null);
   const [addAmount, setAddAmount] = useState<number>(0);
 
   useEffect(() => {

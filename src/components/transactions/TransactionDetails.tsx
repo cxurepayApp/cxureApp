@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import api from "../contexts/axiosConfig";
+import api from "../../contexts/axiosConfig";
 import {
   ArrowLeft,
   Shield,
@@ -12,8 +12,11 @@ import {
   AlertTriangle,
   User,
 } from "lucide-react";
-import { useAuth } from "../contexts/AuthContext";
-import { useSocket } from "../contexts/SocketContext";
+import { useAuth } from "../../hooks/useAuth";
+import { useSocket } from "../../hooks/useSocket";
+import { Message, Milestone } from "../../types/transaction";
+
+
 
 interface Transaction {
   id: number;
@@ -31,21 +34,7 @@ interface Transaction {
   milestones?: Milestone[];
 }
 
-interface Milestone {
-  id: number;
-  title: string;
-  description: string;
-  amount: number;
-  status: string;
-}
 
-interface Message {
-  id: number;
-  sender_id: number;
-  sender_name: string;
-  message: string;
-  timestamp: string;
-}
 
 const TransactionDetails = () => {
   const { id } = useParams<{ id: string }>();

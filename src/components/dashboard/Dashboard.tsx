@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../contexts/axiosConfig";
+import api from "../../contexts/axiosConfig";
 import {
   Shield,
   Wallet,
@@ -13,11 +13,13 @@ import {
   TrendingUp,
   DollarSign,
 } from "lucide-react";
-import { useAuth } from "../contexts/AuthContext";
-import CreateTransaction from "./CreateTransaction";
-import WithdrawModal from "./WithdrawModal";
 
-interface Transaction {
+import CreateTransaction from "../transactions/CreateTransaction";
+import WithdrawModal from "../transactions/WithdrawModal";
+import { useAuth } from "../../hooks/useAuth";
+import { Transaction } from "../../types/buyer";
+
+/* interface Transaction {
   id: number;
   title: string;
   category: string;
@@ -26,7 +28,7 @@ interface Transaction {
   buyer_name?: string;
   seller_name?: string;
   created_at: string;
-}
+} */
 
 const Dashboard: React.FC = () => {
   const { user, logout, refreshUser } = useAuth();

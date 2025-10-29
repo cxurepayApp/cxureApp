@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Shield, Eye, EyeOff } from "lucide-react";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
+
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Login = () => {
       if (user.role === "admin") navigate("/dashboard/admin");
       else if (user.role === "buyer") navigate("/dashboard/buyer");
       else if (user.role === "seller") navigate("/dashboard/seller");
-      else navigate("/dashboard");
+      else navigate("/login");
     } catch (err: any) {
       setError(err.response?.data?.message || err.message || "Login failed");
     } finally {

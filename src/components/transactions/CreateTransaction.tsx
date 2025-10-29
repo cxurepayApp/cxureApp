@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from "../contexts/axiosConfig";
+import api from "../../contexts/axiosConfig";
 import { X, Plus, Trash2, Briefcase, Package, Users } from "lucide-react";
 
 interface Milestone {

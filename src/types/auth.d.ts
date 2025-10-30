@@ -1,5 +1,6 @@
 /* type Role = "admin" | "buyer" | "seller" */
 
+
 export interface User {
   id: number;
   name: string;

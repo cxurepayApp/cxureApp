@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import /* React, */ { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Shield,
   MessageCircle,
-  // CreditCard,
+  CreditCard,
   Users,
   ArrowRight,
   CheckCircle,
@@ -100,12 +100,8 @@ const LandingPage = () => {
       <section className="py-20 bg-white/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Why Choose CurePay?
-            </h2>
-            <p className="text-xl text-gray-600">
-              Built for security, designed for simplicity
-            </p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose CxurePay?</h2>
+            <p className="text-xl text-gray-600">Built for security, designed for simplicity</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -171,7 +167,7 @@ const LandingPage = () => {
             Ready to Secure Your Transactions?
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            Join thousands of users who trust CurePay for their online payments
+            Join thousands of users who trust CxurePay for their online payments
           </p>
           <Link
             to="/register"
@@ -189,10 +185,10 @@ const LandingPage = () => {
           <div className="text-center">
             <div className="flex items-center justify-center space-x-2 mb-4">
               <Shield className="h-8 w-8 text-blue-400" />
-              <span className="text-2xl font-bold">CurePay</span>
+              <span className="text-2xl font-bold">CxurePay</span>
             </div>
             <p className="text-gray-400">
-              © 2024 CurePay. All rights reserved. Secure payments made simple.
+              © 2024 CxurePay. All rights reserved. Secure payments made simple.
             </p>
           </div>
         </div>

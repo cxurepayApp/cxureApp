@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
+
 const MobileNavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
- 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -52,62 +52,54 @@ const MobileNavBar = () => {
         </button>
       </div>
 
-      {/* === Dropdown Menu === */}
-      {isOpen && (
-        <div
-          className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full h-[100lvh]
-          bg-purple-600/60 backdrop-blur-2xl 
-          text-white p-6 flex flex-col gap-3 z-40 
-          transition-all duration-500 ease-in-out"
-        >
-          {/* Header inside menu */}
-          <div className="flex justify-between items-center mb-8">
-            <img
-              src="/icons/ICONLOGOWHITE.svg"
-              alt="Logo"
-              width={50}
-              height={50}
-            />
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-white focus:outline-none transition-transform duration-200 hover:scale-110"
-              aria-label="Close menu"
-            >
-              <XMarkIcon className="w-7 h-7" />
-            </button>
-          </div>
-
-          {/* Navigation Links */}
-          <nav className="flex flex-col text-lg mt-4 space-y-5 font-medium">
-            <a href="#" className="hover:text-purple-200 transition-colors">
-              Home
-            </a>
-            <a href="#" className="hover:text-purple-200 transition-colors">
-              About
-            </a>
-            <a href="#" className="hover:text-purple-200 transition-colors">
-              Contact
-            </a>
-          </nav>
-
-          {/* Auth Buttons */}
-          <div className="flex flex-col mt-10 space-y-4">
-            <Link
-              to="/login"
-              className="text-white border border-white/30 py-2 rounded-md text-center hover:bg-white/10 transition-all"
-            >
-              Login
-            </Link>
-
-            <Link
-              to="/register"
-              className="bg-white text-purple-700 font-semibold px-6 py-2 rounded-lg transition-all duration-200 transform hover:scale-105 text-center"
-            >
-              Get Started
-            </Link>
-          </div>
+      {/* === Dropdown Menu (Tailwind Animation) === */}
+      <div
+        className={`fixed top-0 left-1/2 transform -translate-x-1/2 w-full h-[100lvh]
+        bg-purple-600/60 backdrop-blur-2xl 
+        text-white p-11 flex flex-col gap-3 z-40
+        transition-all duration-500 ease-in-out
+        ${
+          isOpen
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-full opacity-0 pointer-events-none"
+        }
+        `}
+      >
+        {/* Header inside menu */}
+        <div className="flex justify-between items-center mb-[80px]">
+          <br />
         </div>
-      )}
+
+        {/* Navigation Links */}
+        <nav className="flex flex-col text-lg mt-4 space-y-5 font-medium">
+          <a href="#" className="hover:text-purple-200 transition-colors">
+            Home
+          </a>
+          <a href="#" className="hover:text-purple-200 transition-colors">
+            About
+          </a>
+          <a href="#" className="hover:text-purple-200 transition-colors">
+            Contact
+          </a>
+        </nav>
+
+        {/* Auth Buttons */}
+        <div className="flex flex-col mt-10 space-y-4">
+          <Link
+            to="/login"
+            className="text-white border border-white/30 py-2 rounded-md text-center hover:bg-white/10 transition-all"
+          >
+            Login
+          </Link>
+
+          <Link
+            to="/register"
+            className="bg-white text-purple-700 font-semibold px-6 py-2 rounded-lg transition-all duration-200 transform hover:scale-105 text-center"
+          >
+            Get Started
+          </Link>
+        </div>
+      </div>
     </>
   );
 };

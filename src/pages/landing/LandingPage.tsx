@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion"; // 👈 added
+import { motion } from "framer-motion";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
 import MobileNavBar from "../../components/layout/MobileNavBar";
@@ -25,7 +25,8 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    // ✅ Hide horizontal overflow globally
+    <div className="min-h-screen overflow-x-hidden">
       {/* Navigation */}
       <div>
         <nav className="lg:block md:hidden hidden">
@@ -51,7 +52,7 @@ const LandingPage = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-5xl sm:text-5xl  lg:text-8xl font-bold text-gray-900 mb-6 w-[90%] sm:w-[100%] md:w-[600px] lg:w-[700px] mt-10 lg:mt-0 mx-auto lg:mx-0 leading-tight"
+            className="text-5xl sm:text-5xl lg:text-8xl font-bold text-gray-900 mb-6 w-[90%] sm:w-[100%] md:w-[600px] lg:w-[700px] mt-10 lg:mt-0 mx-auto lg:mx-0 leading-tight"
           >
             The Future of <br />
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -93,6 +94,7 @@ const LandingPage = () => {
           </motion.div>
         </motion.div>
 
+        {/* IMAGE COLUMN */}
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -102,7 +104,7 @@ const LandingPage = () => {
         >
           <motion.img
             src="/images/secure_Wallet Glyph Style Blue Colour.svg"
-            alt=""
+            alt="Secure wallet illustration"
             width={800}
             height={800}
             className="md:mt-[100px] mt-[10px] lg:mt-0 transition-all duration-300"
@@ -115,7 +117,7 @@ const LandingPage = () => {
       {/* ------------------------------------------ */}
       {/* Features Section */}
       <section className="py-20 bg-white/50 backdrop-blur-sm">
-        <div className="flex flex-col items-center ax-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -135,7 +137,7 @@ const LandingPage = () => {
             whileInView={{ opacity: 1 }}
             transition={{ staggerChildren: 0.2 }}
             viewport={{ once: false }}
-            className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12 mx-auto max-w-7xl "
+            className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12 mx-auto max-w-7xl"
           >
             {CardDetails.map((card, index) => (
               <motion.div
@@ -148,7 +150,11 @@ const LandingPage = () => {
               >
                 <motion.div
                   animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                   className="w-[75vw]"
                 >
                   <ProductCard {...card} />

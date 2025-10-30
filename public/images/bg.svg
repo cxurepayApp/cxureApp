@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fffbf8;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #000;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .75px;
+      }
+    </style>
+  </defs>
+  <g id="BACKGROUND">
+    <rect class="cls-1" width="500" height="500"/>
+  </g>
+  <g id="OBJECTS">
+    <g>
+      <polyline class="cls-3" points="444.24 138.73 442.91 134.68 446.76 134.54 444.95 129.65 449.38 129.75 448.99 125.55"/>
+      <polyline class="cls-3" points="21.67 288.71 20.34 284.66 24.19 284.52 22.38 279.62 26.81 279.73 26.42 275.53"/>
+      <polyline class="cls-3" points="384.28 22.93 388.4 21.85 388.3 25.71 393.3 24.21 392.91 28.62 397.13 28.49"/>
+      <polyline class="cls-3" points="425.59 413.88 425.27 418.13 421.65 416.78 421.45 422 417.4 420.2 416.15 424.23"/>
+      <polyline class="cls-3" points="52.98 97.79 55.27 101.39 51.57 102.47 54.52 106.77"/>
+      <polyline class="cls-3" points="255 250 257.29 253.6 253.58 254.68 256.54 258.98"/>
+      <rect class="cls-3" x="442.58" y="311.47" width="4.36" height="4.36" transform="translate(-98.91 338.44) rotate(-37.8)"/>
+      <rect class="cls-3" x="316.13" y="464.6" width="4.36" height="4.36" transform="translate(-219.31 293.08) rotate(-37.8)"/>
+      <rect class="cls-3" x="29.65" y="156.84" width="4.36" height="4.36" transform="translate(-90.79 52.88) rotate(-37.8)"/>
+      <rect class="cls-3" x="211.05" y="19.67" width="4.36" height="4.36" transform="translate(-.95 13.42) rotate(-3.6)"/>
+      <rect class="cls-3" x="466.48" y="54.3" width="4.36" height="4.36" transform="translate(-2.62 29.52) rotate(-3.6)"/>
+      <circle class="cls-3" cx="36.69" cy="32.95" r="4.86"/>
+      <circle class="cls-3" cx="287.7" cy="40.56" r="4.86"/>
+      <path class="cls-2" d="m68.19,210.45c0-1.02.83-1.85,1.85-1.85s1.85.83,1.85,1.85-.83,1.85-1.85,1.85-1.85-.83-1.85-1.85Z"/>
+      <path class="cls-2" d="m138.29,38.71c0-1.02.83-1.85,1.85-1.85s1.85.83,1.85,1.85-.83,1.85-1.85,1.85-1.85-.83-1.85-1.85Z"/>
+      <path class="cls-2" d="m464.76,371.98c0-1.02.83-1.85,1.85-1.85s1.85.83,1.85,1.85-.83,1.85-1.85,1.85-1.85-.83-1.85-1.85Z"/>
+      <path class="cls-2" d="m442.91,464.93c0-1.02.83-1.85,1.85-1.85s1.85.83,1.85,1.85-.83,1.85-1.85,1.85-1.85-.83-1.85-1.85Z"/>
+      <path class="cls-2" d="m472.49,213.57c0-1.02.83-1.85,1.85-1.85s1.85.83,1.85,1.85-.83,1.85-1.85,1.85-1.85-.83-1.85-1.85Z"/>
+      <path class="cls-2" d="m233.74,182.29c0-1.02.83-1.85,1.85-1.85s1.85.83,1.85,1.85-.83,1.85-1.85,1.85-1.85-.83-1.85-1.85Z"/>
+    </g>
+  </g>
+</svg>

@@ -3,10 +3,35 @@
 @tailwind utilities;
 
 body {
-  height: 100svh 100lvh 100dvh;
-  width: 100svw 100lvw 100dvw;
-  scroll-behavior: animation;
+  height: 100vh;
+  height: 100dvh; /* fallback-friendly */
+  width: 100vw;
+  width: 100dvw;
+  scroll-behavior: smooth;
   overflow-x: hidden;
-  scrollbar-color: red;
-  
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(97, 3, 97);
+  border: 2px solid transparent;
+}
+
+/* Firefox */
+* {
+  scrollbar-color: rgb(97, 3, 97) transparent;
+  scrollbar-width: thin; /* optional */
 }

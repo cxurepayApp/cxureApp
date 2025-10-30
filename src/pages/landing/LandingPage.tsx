@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {
   Shield,
   MessageCircle,
-  CreditCard,
+  // CreditCard,
   Users,
   ArrowRight,
   CheckCircle,

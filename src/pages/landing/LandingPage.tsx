@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  Shield,
-  MessageCircle,
-  // CreditCard,
-  Users,
-  ArrowRight,
-  CheckCircle,
-  icons,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
 import MobileNavBar from "../../components/layout/MobileNavBar";
+import CardDetails from "../../components/UI/productCardDetails";
 import ProductCard from "../../components/UI/ProductCard";
 
 const LandingPage = () => {
@@ -54,7 +47,7 @@ const LandingPage = () => {
             </span>
           </h1>
 
-          <p className="lg:text-xl text-base sm:text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+          <p className="lg:text-xl text-base sm:text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed p-4">
             Secure, transparent, and reliable escrow platform for freelancers,
             businesses, and anyone who needs safe online transactions with
             built-in dispute resolution.
@@ -91,98 +84,51 @@ const LandingPage = () => {
 
       {/* Features Section */}
       <section className="py-20 bg-white/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center ax-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-[#333333] mb-4">
               Why Choose CxurePay?
             </h2>
             <p className="lg:text-xl text-base sm:text-lg md:text-xl text-gray-600">
               Built for security, designed for simplicity
             </p>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-[#e2e4fa] rounded-2xl px-8 pt-8 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1">
-              <div className="bg-blue-300 w-14 h-14 rounded-xl flex items-center justify-center mb-6">
-                <Shield className="h-7 w-7 text-blue-600" />
+          <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12 mx-auto max-w-7xl ">
+            {CardDetails.map((card, index) => (
+              <div
+                key={card.id}
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+                className="flex justify-center"
+              >
+                <div className="w-[75vw]">
+                  <ProductCard {...card} />
+                </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Secure Escrow
-              </h3>
-              <p className="text-gray-600">
-                Your funds are safely held until both parties fulfill their
-                obligations
-              </p>
-              <img src="/images/cxure.svg" alt="" className="mt-6 " />
-            </div>
-
-            <div className="bg-white rounded-2xl px-8 pt-8 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1 relative overflow-hidden">
-              {/* Background image (now decorative, behind everything) */}
-              <img
-                src="/images/bg.svg"
-                alt=""
-                className="absolute top-0 right-0 w-full h-full object-cover pointer-events-none select-none"
-              />
-              <div className="bg-purple-100 w-14 h-14 rounded-xl flex items-center justify-center mb-6 relative z-10">
-                <MessageCircle className="h-7 w-7 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 relative z-10">
-                Real-time Chat
-              </h3>
-              <p className="text-gray-600 relative z-10">
-                Communicate directly with buyers and sellers within each
-                transaction
-              </p>
-              <img
-                src="/images/realchat.svg"
-                alt=""
-                className="mt-6 relative z-10"
-              />
-            </div>
-
-            <div className="bg-[#d5e8fd] rounded-2xl px-8 pt-8 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1">
-              <div className="bg-[#ffbd39] w-14 h-14 rounded-xl flex items-center justify-center mb-6">
-                <CheckCircle className="h-7 w-7 text-[#fd9518]" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Milestone System
-              </h3>
-              <p className="text-gray-600">
-                Break down projects into manageable milestones with separate
-                payments
-              </p>
-              <img src="/images/milesteon.svg" alt="" className="mt-6" />
-            </div>
-
-            <div className="bg-white rounded-2xl px-8 pt-8 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1">
-              <div className="bg-orange-100 w-14 h-14 rounded-xl flex items-center justify-center mb-6">
-                <Users className="h-7 w-7 text-orange-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Multi-Category
-              </h3>
-              <p className="text-gray-600">
-                Freelancing, procurement, and general trade - all in one
-                platform
-              </p>
-              <img src="/images/general.svg" alt="" className="mt-6 " />
-            </div>
-
-          <div>
-            {}
+            ))}
           </div>
 
-               
-                
-
-          </div>
+          {/* <div className="flex flex-wrap justify-center gap-12 mx-auto max-w-7xl">
+            {CardDetails.map((card, index) => (
+              <div
+                key={card.id}
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+                className="flex justify-center"
+              >
+                <div className="w-[75vw] sm:w-[60vw] md:w-[60vw] lg:w-[20vw]">
+                  <ProductCard {...card} />
+                </div>
+              </div>
+            ))}
+          </div> */}
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl font-bold text-[#333333] mb-6">
             Ready to Secure Your Transactions?
           </h2>
           <p className="lg:text-xl text-base sm:text-lg md:text-xl text-gray-600 mb-8">

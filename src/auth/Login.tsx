@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Shield, Eye, EyeOff } from "lucide-react";
-import { useAuth } from "../../hooks/useAuth";
-
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -91,7 +90,7 @@ const Login = () => {
 
         <p className="mt-6 text-center text-gray-600">
           Don’t have an account?{" "}
-          <Link to="/register" className="text-blue-600 font-semibold">
+          <Link to="/auth/register" className="text-blue-600 font-semibold">
             Sign up
           </Link>
         </p>

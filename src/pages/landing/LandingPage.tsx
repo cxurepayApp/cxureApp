@@ -78,7 +78,7 @@ const LandingPage = () => {
             className="flex flex-col sm:flex-row lg:justify-start items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4"
           >
             <Link
-              to="/register"
+              to="/auth/register"
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 flex items-center space-x-2"
             >
               <span>Start Protecting Your Payments</span>
@@ -86,7 +86,7 @@ const LandingPage = () => {
             </Link>
 
             <Link
-              to="/login"
+              to="/auth/login"
               className="bg-white text-gray-900 px-8 py-4 rounded-xl text-lg font-semibold border-2 border-gray-200 hover:border-gray-300 transition-all duration-200"
             >
               I Have an Account
@@ -117,7 +117,8 @@ const LandingPage = () => {
       {/* ------------------------------------------ */}
       {/* Features Section */}
       <section className="py-20 bg-white/50 backdrop-blur-sm">
-        <div className="flex flex-col items-center max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto">
+          {/* Heading */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -132,12 +133,13 @@ const LandingPage = () => {
             </p>
           </motion.div>
 
+          {/* Grid */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ staggerChildren: 0.2 }}
             viewport={{ once: false }}
-            className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12 mx-auto max-w-7xl"
+            className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12 w-full justify-items-center"
           >
             {CardDetails.map((card, index) => (
               <motion.div
@@ -155,7 +157,7 @@ const LandingPage = () => {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="w-[75vw]"
+                  className="w-full max-w-xs"
                 >
                   <ProductCard {...card} />
                 </motion.div>
@@ -180,7 +182,7 @@ const LandingPage = () => {
             Join thousands of users who trust CxurePay for their online payments
           </p>
           <Link
-            to="/register"
+            to="/auth/register"
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-12 py-4 rounded-xl text-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 inline-flex items-center space-x-2"
           >
             <span>Create Free Account</span>

@@ -26,13 +26,13 @@ const Navbar = () => {
           {/* ------------------------------------------ */}
           <div className="flex items-center space-x-4">
             <Link
-              to="/login"
+              to="/auth/login"
               className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-md transition-colors"
             >
               Login
             </Link>
             <Link
-              to="/register"
+              to="/auth/register"
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
             >
               Get Started

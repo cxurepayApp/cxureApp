@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Shield, Eye, EyeOff, User, Store } from "lucide-react";
-import { useAuth } from "../../hooks/useAuth";
-import { RegisterData } from "../../types/register";
-
-
+import { Eye, EyeOff, User, Store } from "lucide-react";
+import { useAuth } from "../hooks/useAuth";
+import { type RegisterData } from "../types/register";
 
 const Register = () => {
   const [formData, setFormData] = useState<RegisterData>({
     name: "",
     email: "",
+    tel: "",
+    address: "",
+    userTag: "",
+    userImg: null,
     password: "",
+    confirmPassword: "",
+    securityQuestion: "",
+    securityAnswer: "",
+    twoFactorEnabled: false,
     role: "buyer",
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -22,33 +29,50 @@ const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError("");
+
+    // Validate confirm password
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    setLoading(true);
+
+    // Error handling
+
     try {
       const user = await register(
         formData.name,
         formData.email,
-        formData.password,
+        formData.password!,
         formData.role
       );
       navigate(`/dashboard/${user.role}`);
     } catch (err: any) {
-      setError(err.response?.data?.message || err.message || "Registration failed");
+      let message = "Registration failed. Please try again.";
+
+      if (err.response?.data?.message) {
+        message = err.response.data.message;
+      } else if (err.message === "Network Error") {
+        message =
+          "Cannot connect to server. Check your internet or try again later.";
+      }
+
+      setError(message);
+
+      //  auto-hide error message 
+      setTimeout(() => setError(""), 3500);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8">
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-6 sm:p-8">
         <div className="text-center mb-8">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <Shield className="h-10 w-10 text-blue-600" />
-            <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              CxurePay
-            </span>
-          </div>
           <h2 className="text-2xl font-bold text-gray-900">Create Account</h2>
           <p className="text-gray-600 mt-2">Join the secure payment platform</p>
         </div>
@@ -59,7 +83,7 @@ const Register = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
             placeholder="Full Name"
@@ -68,14 +92,28 @@ const Register = () => {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             required
           />
+
           <input
             type="email"
             placeholder="Email"
             className="w-full px-4 py-3 border rounded-lg"
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
             required
           />
+
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            className="w-full px-4 py-3 border rounded-lg"
+            value={formData.tel}
+            onChange={(e) => setFormData({ ...formData, tel: e.target.value })}
+            required
+          />
+
+          {/* Password */}
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -96,7 +134,20 @@ const Register = () => {
             </button>
           </div>
 
-          <div className="flex gap-4">
+          {/* Confirm Password */}
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Confirm Password"
+            className="w-full px-4 py-3 border rounded-lg"
+            value={formData.confirmPassword}
+            onChange={(e) =>
+              setFormData({ ...formData, confirmPassword: e.target.value })
+            }
+            required
+          />
+
+          {/* Role Selection */}
+          <div className="flex gap-4 mt-2">
             <button
               type="button"
               onClick={() => setFormData({ ...formData, role: "buyer" })}
@@ -122,10 +173,11 @@ const Register = () => {
             </button>
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg"
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg mt-4 disabled:opacity-50"
           >
             {loading ? "Creating..." : "Create Account"}
           </button>
@@ -133,7 +185,7 @@ const Register = () => {
 
         <p className="mt-6 text-center text-gray-600">
           Already have an account?{" "}
-          <Link to="/login" className="text-blue-600 font-semibold">
+          <Link to="/auth/login" className="text-blue-600 font-semibold">
             Sign in
           </Link>
         </p>

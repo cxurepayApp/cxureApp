@@ -3,8 +3,6 @@ import api from "./axiosConfig";
 import { AuthContextType, User } from "../types/auth";
 
 
-
-
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {

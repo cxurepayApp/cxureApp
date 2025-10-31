@@ -86,14 +86,14 @@ const MobileNavBar = () => {
         {/* Auth Buttons */}
         <div className="flex flex-col mt-10 space-y-4">
           <Link
-            to="/login"
+            to="/auth/login"
             className="text-white border border-white/30 py-2 rounded-md text-center hover:bg-white/10 transition-all"
           >
             Login
           </Link>
 
           <Link
-            to="/register"
+            to="/auth/register"
             className="bg-white text-purple-700 font-semibold px-6 py-2 rounded-lg transition-all duration-200 transform hover:scale-105 text-center"
           >
             Get Started

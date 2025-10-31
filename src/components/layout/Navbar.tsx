@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const listDeatils = ["Home", "About", "Contact Us"];
+  const listDetails = ["Home", "About", "Contact Us"];
 
   return (
     <>
@@ -13,12 +13,13 @@ const Navbar = () => {
           </div>
 
           <div className="flex flex-row gap-6">
-            {listDeatils.map((items) => (
+            {listDetails.map((item) => (
               <Link
+               key = {item}
                 to="/"
                 className="text-blue-600 hover:-purple-600 px-4 py-2 rounded-md transition-colors"
               >
-                {items}
+                {item}
               </Link>
             ))}
           </div>

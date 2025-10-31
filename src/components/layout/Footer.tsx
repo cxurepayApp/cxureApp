@@ -71,7 +71,7 @@ const Footer = () => {
         {/* Divider + Bottom Text */}
         <hr className="border-gray-700 my-8" />
         <p className="text-gray-500 text-sm text-center">
-          © 2024 CxurePay. All rights reserved. Secure payments made simple.
+          © <time dateTime={`${new Date().getFullYear()}`}>{new Date().getFullYear()}</time> CxurePay. All rights reserved. Secure payments made simple.
         </p>
       </div>
     </footer>

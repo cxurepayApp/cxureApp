@@ -3,12 +3,14 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { SocketProvider } from "./contexts/SocketContext";
 import { lazy, Suspense } from "react";
 import { RouteSkeleton } from "./components/UI/RouteSkeleton";
+import { RegisterProvider } from "./contexts/RegisterContext";
 
 // Lazy-loaded components
 const AuthLayout = lazy(() => import("./components/layout/AuthLayout"));
 const LandingPage = lazy(() => import("./pages/landing/LandingPage"));
 const Login = lazy(() => import("./auth/Login"));
 const Register = lazy(() => import("./auth/Register"));
+const RegisterPage2 = lazy(() => import("./auth/RegisterPage2"));
 const TransactionDetails = lazy(() => import("./pages/transactions/TransactionDetails"));
 const AdminDashboard = lazy(() => import("./pages/dashboard/AdminDashboard"));
 const BuyerDashboard = lazy(() => import("./pages/dashboard/BuyerDashboard"));
@@ -24,7 +26,8 @@ function App() {
   return (
     <AuthProvider>
       <SocketProvider>
-        <Router>
+        <RegisterProvider>
+          <Router>
           <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
             <Suspense
               fallback={createFallback(
@@ -52,6 +55,7 @@ function App() {
                 >
                   <Route path="login" element={<Login />} />
                   <Route path="register" element={<Register />} />
+                  <Route path="register2" element ={<RegisterPage2/>} />
                 </Route>
 
                 {/* Protected dashboards */}
@@ -93,6 +97,7 @@ function App() {
             </Suspense>
           </div>
         </Router>
+        </RegisterProvider>
       </SocketProvider>
     </AuthProvider>
   );

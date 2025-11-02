@@ -3,9 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, User, Store } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
 import { type RegisterData } from "../types/register";
+import { useRegister } from "../hooks/useRegister";
 
 const Register = () => {
-  const [formData, setFormData] = useState<RegisterData>({
+  /* const [formData, setFormData] = useState<RegisterData>({
     name: "",
     email: "",
     tel: "",
@@ -67,7 +68,10 @@ const Register = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }; */
+
+  const {data, updateData} = useRegister()
+  const navigate = useNavigate()
 
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
@@ -77,19 +81,19 @@ const Register = () => {
           <p className="text-gray-600 mt-2">Join the secure payment platform</p>
         </div>
 
-        {error && (
+        {/* {error && (
           <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-6">
             {error}
           </div>
-        )}
+        )} */}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form /* onSubmit={handleSubmit} */ className="space-y-4">
           <input
             type="text"
             placeholder="Full Name"
             className="w-full px-4 py-3 border rounded-lg"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            value=/* {formData.name} */ {data.name }
+            onChange={(e) => /* setFormData */updateData({ /* ...formData */name: e.target.value })}
             required
           />
 
@@ -97,9 +101,9 @@ const Register = () => {
             type="email"
             placeholder="Email"
             className="w-full px-4 py-3 border rounded-lg"
-            value={formData.email}
+            value=/* {formData.email} */ {data.email }
             onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
+              /* setFormData */updateData({ /* ...formData,  */email: e.target.value })
             }
             required
           />
@@ -108,13 +112,23 @@ const Register = () => {
             type="tel"
             placeholder="Phone Number"
             className="w-full px-4 py-3 border rounded-lg"
-            value={formData.tel}
-            onChange={(e) => setFormData({ ...formData, tel: e.target.value })}
+            value=/* {formData.tel} */ {data.tel }
+            onChange={(e) => /* setFormData */updateData({ /* ...formData, */ tel: e.target.value })}
             required
           />
 
+          <input 
+            type="text" 
+            placeholder="Address" 
+            className="w-full px-4 py-3 border rounded-lg"
+            value={data.address}
+            onChange={e => updateData({address: e.target.value})}
+            required
+            />
+
+
           {/* Password */}
-          <div className="relative">
+          {/* <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
@@ -132,10 +146,10 @@ const Register = () => {
             >
               {showPassword ? <EyeOff /> : <Eye />}
             </button>
-          </div>
+          </div> */}
 
           {/* Confirm Password */}
-          <input
+          {/* <input
             type={showPassword ? "text" : "password"}
             placeholder="Confirm Password"
             className="w-full px-4 py-3 border rounded-lg"
@@ -144,15 +158,15 @@ const Register = () => {
               setFormData({ ...formData, confirmPassword: e.target.value })
             }
             required
-          />
+          /> */}
 
           {/* Role Selection */}
           <div className="flex gap-4 mt-2">
             <button
               type="button"
-              onClick={() => setFormData({ ...formData, role: "buyer" })}
+              onClick={() => /* setFormData */updateData({ /* ...formData, */ role: "buyer" })}
               className={`flex-1 border px-4 py-3 rounded-lg flex items-center justify-center gap-2 ${
-                formData.role === "buyer"
+                /* formData */data.role === "buyer"
                   ? "border-blue-500 bg-blue-50"
                   : "border-gray-200"
               }`}
@@ -162,9 +176,9 @@ const Register = () => {
 
             <button
               type="button"
-              onClick={() => setFormData({ ...formData, role: "seller" })}
+              onClick={() => /* setFormData */updateData({ /* ...formData, */ role: "seller" })}
               className={`flex-1 border px-4 py-3 rounded-lg flex items-center justify-center gap-2 ${
-                formData.role === "seller"
+                /* formData */data.role === "seller"
                   ? "border-blue-500 bg-blue-50"
                   : "border-gray-200"
               }`}
@@ -175,11 +189,12 @@ const Register = () => {
 
           {/* Submit Button */}
           <button
-            type="submit"
-            disabled={loading}
+            type="button"
+            /* disabled={loading} */
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg mt-4 disabled:opacity-50"
+            onClick={()=> navigate('/auth/register2')}
           >
-            {loading ? "Creating..." : "Create Account"}
+            {/* {loading ? "Creating..." : "Create Account"} */} Continue
           </button>
         </form>
 

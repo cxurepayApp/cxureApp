@@ -5,7 +5,7 @@ export interface RegisterData {
   address: string;
   userTag: string | number; 
   userImg: File | null; 
-  password?: string ;
+  password?: string ; 
   confirmPassword?: string ;
   securityQuestion: string; 
   securityAnswer: string;

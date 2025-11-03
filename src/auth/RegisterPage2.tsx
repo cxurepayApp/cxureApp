@@ -136,7 +136,7 @@ export default function RegisterPage2() {
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               className="w-full px-4 py-3 border rounded-lg pr-10"
-              value={data.password}
+              value={data.password ?? ""}
               onChange={(e) =>
                 updateData({ password: e.target.value })
               }
@@ -156,7 +156,7 @@ export default function RegisterPage2() {
             type={showPassword ? "text" : "password"}
             placeholder="Confirm Password"
             className="w-full px-4 py-3 border rounded-lg"
-            value={data.confirmPassword}
+            value={data.confirmPassword ?? ""}
             onChange={(e) =>
               updateData({ confirmPassword: e.target.value })
             }

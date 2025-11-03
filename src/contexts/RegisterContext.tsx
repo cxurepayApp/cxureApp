@@ -40,6 +40,7 @@ export const RegisterProvider = ({children}:RegisterContextProviderProps) =>{
 
     useEffect(()=>{
         const {userImg, password, confirmPassword, ...canSave} = data
+
         localStorage.setItem("formData", JSON.stringify(canSave))
     },[data])
 

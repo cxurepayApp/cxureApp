@@ -73,7 +73,11 @@ const Register = () => {
   const {data, updateData} = useRegister()
   const navigate = useNavigate()
 
-  
+  function handleNext(e: React.FormEvent){
+    e.preventDefault()
+    navigate('/auth/register2')
+  }
+  console.log(data)
 
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
@@ -89,7 +93,7 @@ const Register = () => {
           </div>
         )} */}
 
-        <form /* onSubmit={handleSubmit} */  className="space-y-4">
+        <form onSubmit={handleNext}  className="space-y-4">
           <input
             type="text"
             placeholder="Full Name"
@@ -200,10 +204,10 @@ const Register = () => {
 
           {/* Submit Button */}
           <button
-            type="button"
+            type="submit"
             /* disabled={loading} */
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg mt-4 disabled:opacity-50"
-            onClick={()=> navigate('/auth/register2')}
+            
           >
             {/* {loading ? "Creating..." : "Create Account"} */} Continue
           </button>

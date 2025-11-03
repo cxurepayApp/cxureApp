@@ -73,6 +73,8 @@ const Register = () => {
   const {data, updateData} = useRegister()
   const navigate = useNavigate()
 
+  
+
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-6 sm:p-8">
@@ -87,7 +89,7 @@ const Register = () => {
           </div>
         )} */}
 
-        <form /* onSubmit={handleSubmit} */ className="space-y-4">
+        <form /* onSubmit={handleSubmit} */  className="space-y-4">
           <input
             type="text"
             placeholder="Full Name"
@@ -123,6 +125,15 @@ const Register = () => {
             className="w-full px-4 py-3 border rounded-lg"
             value={data.address}
             onChange={e => updateData({address: e.target.value})}
+            required
+            />
+
+          <input 
+            type="text" 
+            placeholder="User Tag" 
+            className="w-full px-4 py-3 border rounded-lg"
+            value={data.userTag}
+            onChange={e => updateData({userTag: e.target.value})}
             required
             />
 

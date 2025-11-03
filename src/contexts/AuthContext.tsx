@@ -26,8 +26,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return user;
   };
 
-  const register = async (name: string, email: string, password: string, role: string): Promise<User> => {
-    const res = await api.post(`/auth/register`, { name, email, password, role });
+  const register = async (
+    name: string, 
+    email: string, 
+    password: string, 
+    role: string, 
+    address: string, 
+    tel: string, 
+    securityQuestion: string, 
+    securityAnswer: string, 
+    userTag: string, 
+    twoFactorEnabled: boolean, 
+    userImg: File | null 
+  ): Promise<User> => {
+    const res = await api.post(`/auth/register`, { name, email, password, role, address, tel, securityQuestion, securityAnswer, userImg, userTag, twoFactorEnabled });
     const { token, user } = res.data;
     localStorage.setItem("token", token);
     setToken(token);

@@ -3,10 +3,10 @@ export interface RegisterData {
   email: string;
   tel: string; 
   address: string;
-  userTag: string | number; 
+  userTag: string /* | number */; 
   userImg: File | null; 
-  password?: string ; 
-  confirmPassword?: string ;
+  password?: string; 
+  confirmPassword?: string;
   securityQuestion: string; 
   securityAnswer: string;
   twoFactorEnabled: boolean; 
